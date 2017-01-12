@@ -34,6 +34,7 @@ var CSSTransitionGroup = React.createClass({
     this.currentlyTransitioningKeys = {};
     this.keysToEnter = [];
     this.keysToLeave = [];
+    this.refs = {};
   },
 
   componentWillReceiveProps(nextProps) {
@@ -188,11 +189,12 @@ var CSSTransitionGroup = React.createClass({
   },
 
   render() {
+    var _this = this;
     var props = this.props;
     var children = this.state.children.map((child) => {
       return <CSSTransitionGroupChild
         key={child.key}
-        ref={child.key}
+        ref={function(c) { _this.refs[child.key] = c; }}
         name={props.transitionName}
         enter={props.transitionEnter}
         leave={props.transitionLeave}>{child}</CSSTransitionGroupChild>;

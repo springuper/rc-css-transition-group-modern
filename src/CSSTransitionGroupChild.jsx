@@ -13,6 +13,7 @@
 'use strict';
 
 var React = require('react');
+var ReactDOM = require('react-dom');
 
 var CSSCore = require('./CSSCore');
 var ReactTransitionEvents = require('./ReactTransitionEvents');
@@ -21,7 +22,7 @@ var TICK = 17;
 
 var ReactCSSTransitionGroupChild = React.createClass({
   transition(animationType, finishCallback) {
-    var node = this.getDOMNode();
+    var node = ReactDOM.findDOMNode(this);
     var className = this.props.name + '-' + animationType;
     var activeClassName = className + '-active';
 
@@ -78,7 +79,7 @@ var ReactCSSTransitionGroupChild = React.createClass({
   flushClassNameQueue() {
     if (this.isMounted()) {
       this.classNameQueue.forEach(
-        CSSCore.addClass.bind(CSSCore, this.getDOMNode())
+        CSSCore.addClass.bind(CSSCore, ReactDOM.findDOMNode(this))
       );
     }
     this.classNameQueue.length = 0;
