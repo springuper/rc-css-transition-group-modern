@@ -1,7 +1,7 @@
 {
-  "name": "rc-css-transition-group",
+  "name": "rc-css-transition-group-modern",
   "version": "2.1.4",
-  "description": "css-transition-group ui component for react",
+  "description": "css-transition-group ui component for react with removal of deprecated APIs",
   "keywords": [
     "react",
     "react-component",
