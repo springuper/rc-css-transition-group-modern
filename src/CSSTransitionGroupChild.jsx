@@ -23,8 +23,16 @@ var TICK = 17;
 var ReactCSSTransitionGroupChild = React.createClass({
   transition(animationType, finishCallback) {
     var node = ReactDOM.findDOMNode(this);
-    var className = this.props.name + '-' + animationType;
-    var activeClassName = className + '-active';
+    var name = this.props.name;
+    var className;
+    var activeClassName;
+    if (typeof name === 'object') {
+      className = name[animationType];
+      activeClassName = name[animationType + 'Active'];
+    } else {
+      className = this.props.name + '-' + animationType;
+      activeClassName = className + '-active';
+    }
 
     if (this.endListener) {
       this.endListener();
