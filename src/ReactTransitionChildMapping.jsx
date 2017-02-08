@@ -1,8 +1,10 @@
 'use strict';
 
+var React = require('react');
+
 function inChildren(children, child) {
   var found = 0;
-  children.forEach(function (c) {
+  React.Children.forEach(children, function (c) {
     if (found) {
       return;
     }
@@ -16,7 +18,7 @@ module.exports = {
 
   isShownInChildren(children, child, showProp) {
     var found = 0;
-    children.forEach(function (c) {
+    React.Children.forEach(children, function (c) {
       if (found) {
         return;
       }
@@ -27,7 +29,7 @@ module.exports = {
 
   inChildrenByKey(children, key) {
     var found = 0;
-    children.forEach(function (c) {
+    React.Children.forEach(children, function (c) {
       if (found) {
         return;
       }
@@ -38,7 +40,7 @@ module.exports = {
 
   isShownInChildrenByKey(children, key, showProp) {
     var found = 0;
-    children.forEach(function (c) {
+    React.Children.forEach(children, function (c) {
       if (found) {
         return;
       }
@@ -54,7 +56,7 @@ module.exports = {
     // the combined list
     var nextChildrenPending = {};
     var pendingChildren = [];
-    prev.forEach(function (c) {
+    React.Children.forEach(prev, function (c) {
       if (inChildren(next, c)) {
         if (pendingChildren.length) {
           nextChildrenPending[c.key] = pendingChildren;
@@ -65,7 +67,7 @@ module.exports = {
       }
     });
 
-    next.forEach(function (c) {
+    React.Children.forEach(next, function (c) {
       if (nextChildrenPending.hasOwnProperty(c.key)) {
         ret = ret.concat(nextChildrenPending[c.key]);
       }
